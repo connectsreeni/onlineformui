@@ -1,0 +1,31 @@
+<nav class="navbar navbar-expand-sm navbar-light bg-light">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">
+        <h1>Online Form</h1>
+      </a>
+    </div>
+  </nav>
+  <div class="container-fluid py-3">
+    <form #userForm="ngForm" (ngSubmit)="onSaveForm(userForm)" class="formClass">
+    <div class="row my-3">
+      <div class="col">
+        <label for="firstNameFormControlInput" class="form-label">First Name</label>
+        <input type="text" class="form-control form-control-sm" id="firstNameFormControlInput" placeholder="Ex: John" name="firstName" ngModel maxlength="50"
+        required #firstName = "ngModel" ngModel [ngClass]="{'is-invalid': firstName.invalid && userForm.submitted, 'is-valid': firstName.valid && userForm.submitted}">
+      </div>
+    </div>
+    <div class="row my-3">
+      <div class="col">
+        <label for="lastNameFormControlInput" class="form-label">Last Name</label>
+        <input type="text" class="form-control form-control-sm" id="lastNameFormControlInput" placeholder="Ex: Smith" name="lastName" maxlength="50"
+        required #lastName = "ngModel" ngModel [ngClass]="{'is-invalid': lastName.invalid && userForm.submitted, 'is-valid': lastName.valid && userForm.submitted}">
+      </div>
+    </div>
+    <div class="row my-3">
+      <div class="col">
+        <button type="submit" [disabled]="isSaveProcessing" class="btn btn-primary">Save</button>
+        <button type="button" [disabled]="isSaveProcessing" class="btn btn-secondary btn-reset" (click)="userForm.resetForm()">Reset</button>
+      </div>
+    </div>
+    </form>
+<router-outlet></router-outlet>
